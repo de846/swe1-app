@@ -7,3 +7,5 @@ install:
 script:
   - black --check $TRAVIS_BUILD_DIR
   - flake8
+  - coverage run --source='.' manage.py test mysite
+  - coveralls
