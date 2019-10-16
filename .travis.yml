@@ -1,12 +1,21 @@
 language: python
+
 python:
 - '3.6'
+
 install:
 - pip install --upgrade pip
 - pip install -r requirements.txt
 - pip install -r test-requirements.txt
+
+before_script:
+- python manage.py migrate
+- python manage.py collectstatic --noinput
+
 script:
-- black --check $TRAVIS_BUILD_DIR
-- flake8
-- coverage run --source='.' manage.py test mysite
+- black --check .
+- flake8 .
+- coverage run --source='mysite,polls' manage.py test mysite
+
+after_script:
 - coveralls
