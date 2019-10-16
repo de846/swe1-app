@@ -1,4 +1,4 @@
 django
-gunicorn
 django-heroku
+gunicorn
 psycopg2==2.7.5
